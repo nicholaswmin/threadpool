@@ -1,5 +1,5 @@
 {
-  "name": "threadpool",
+  "name": "@nicholaswmin/threadpool",
   "version": "1.0.0",
   "type": "module",
   "description": "tiny threadpool with ergonomic IPC",
