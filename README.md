@@ -82,7 +82,7 @@ Starts the pool.
 
 #### `await pool.stop()`
 
-Sends a [`SIGTERM`][signals] signal to each thread.
+Shutsdown all threads, removes all listeners and stops the pool
 
 Returns array of [exit codes][ecodes].  
 
@@ -189,8 +189,9 @@ timeouts are in `ms` and can be set like so:
 ```js
 import { Threadpool } from '@nicholaswmin/threadpool'
 
-Threadpool.readyTimeout = 1000
-Threadpool.killTimeout  = 1000
+Threadpool.spawnTimeout = 500
+Threadpool.readyTimeout = 500
+Threadpool.killTimeout  = 500
 
 const pool = new Threadpool('thread.js')
 
@@ -218,7 +219,6 @@ NODE_ENV=test node --run test
 ### Benchmark
 
 > Run a [ping/pong benchmark][benchmark]   
-> Measures [IPC][ipc] capacity 
 
 ```bash 
 node --run benchmark -- --size=4 --kibs=10
