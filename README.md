@@ -163,13 +163,12 @@ Emit an event to the primary.
 
 ## Graceful exits
 
-You should listen to `SIGTERM` and perform a [graceful exit][grace] by 
-calling `pool.stop()`, like so:
+Use [`beforeExit`][bexit] to call `pool.stop()`, like so:
 
 ```js
 // primary.js
 
-process.once('SIGTERM', async () => {
+process.on('beforeExit', async () => {
   try {
     await pool.stop()
     process.exit(0)
@@ -255,6 +254,7 @@ logs:
 [dep-url]: https://blog.author.io/npm-needs-a-personal-trainer-537e0f8859c6
 
 [ipc]: https://en.wikipedia.org/wiki/Inter-process_communication
+[bexit]: https://nodejs.org/api/process.html#event-beforeexit
 [parent-proc]: https://en.wikipedia.org/wiki/Parent_process
 [fork]: https://nodejs.org/api/child_process.html#child_processforkmodulepath-args-options
 [env]: https://nodejs.org/api/process.html#processenv
