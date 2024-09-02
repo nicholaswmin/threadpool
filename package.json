@@ -1,0 +1,30 @@
+{
+  "name": "threadpool",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "tiny threadpool with ergonomic IPC",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test --test-reporter=spec --test-reporter=lcov --test-reporter-destination=stdout --test-reporter-destination=test/lcov.info \"test/**/*.test.js\"",
+    "benchmark": "node test/utils/benchmrk/primary.js"
+  },
+  "engines": {
+    "node": ">=22.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholaswmin/threadpool.git"
+  },
+  "keywords": [
+    "threadpool",
+    "child-process",
+    "javascript",
+    "nodejs"
+  ],
+  "author": "@nicholaswmin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicholaswmin/threadpool/issues"
+  },
+  "homepage": "https://github.com/nicholaswmin/threadpool#readme"
+}
