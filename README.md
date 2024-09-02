@@ -1,4 +1,4 @@
-[![dep-url][dep-badge]][dep-url] [![test-url][test-badge]][test-url] 
+[![test-url][test-badge]][test-url] [![dep-url][dep-badge]][dep-url] 
 
 # :thread: threadpool
 
@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm i https://github.com/nicholaswmin/threadpool
+npm i @nicholaswmin/threadpool
 ```
 
 ## Example
@@ -74,15 +74,13 @@ Creates a pool.
 | `env`        | `Object` | Thread env. variables    | primary `process.env` |
 
 
-### Start/Stop
-
 #### `await pool.start()`
 
 Starts the pool.
 
 #### `await pool.stop()`
 
-Sends a [`SIGTERM`][signals] signal to each thread.
+Shutsdown all threads, removes all listeners and stops the pool
 
 Returns array of [exit codes][ecodes].  
 
@@ -163,13 +161,12 @@ Emit an event to the primary.
 
 ## Graceful exits
 
-You should listen to `SIGTERM` and perform a [graceful exit][grace] by 
-calling `pool.stop()`, like so:
+Use [`beforeExit`][bexit] to call `pool.stop()`, like so:
 
 ```js
 // primary.js
 
-process.once('SIGTERM', async () => {
+process.on('beforeExit', async () => {
   try {
     await pool.stop()
     process.exit(0)
@@ -190,8 +187,9 @@ timeouts are in `ms` and can be set like so:
 ```js
 import { Threadpool } from '@nicholaswmin/threadpool'
 
-Threadpool.readyTimeout = 1000
-Threadpool.killTimeout  = 1000
+Threadpool.spawnTimeout = 500
+Threadpool.readyTimeout = 500
+Threadpool.killTimeout  = 500
 
 const pool = new Threadpool('thread.js')
 
@@ -219,7 +217,6 @@ NODE_ENV=test node --run test
 ### Benchmark
 
 > Run a [ping/pong benchmark][benchmark]   
-> Measures [IPC][ipc] capacity 
 
 ```bash 
 node --run benchmark -- --size=4 --kibs=10
@@ -227,18 +224,11 @@ node --run benchmark -- --size=4 --kibs=10
 
 > 4 threads, each `ping` sending 10 kilobytes of event data
 
-logs:
 
-```text
-┌───────┬────────────┬────────────┬─────────────────────┬─────────────────────┐
-│ ticks │ pings/sec. │ pongs/sec. │ ping data (mb/sec.) │ pong data (mb/sec.) │
-├───────┼────────────┼────────────┼─────────────────────┼─────────────────────┤
-│ 5     │ 3968       │ 15871      │ 39.71               │ 158.71              │
-└───────┴────────────┴────────────┴─────────────────────┴─────────────────────┘
+## Contributing
 
- threads: 4 | payload (kb): 10 | Load avg. (1 min): 2 | Memory usage (mb): 10
-```
-
+Follows [Semver][sv], [Github Flow][gh-flow] & [Conventional Commits][ccom].  
+Changes *must* be accompanied by 100% unit-test coverage.
 
 ## Authors
 
@@ -255,6 +245,7 @@ logs:
 [dep-url]: https://blog.author.io/npm-needs-a-personal-trainer-537e0f8859c6
 
 [ipc]: https://en.wikipedia.org/wiki/Inter-process_communication
+[bexit]: https://nodejs.org/api/process.html#event-beforeexit
 [parent-proc]: https://en.wikipedia.org/wiki/Parent_process
 [fork]: https://nodejs.org/api/child_process.html#child_processforkmodulepath-args-options
 [env]: https://nodejs.org/api/process.html#processenv
@@ -268,6 +259,9 @@ logs:
 [fanout]: https://en.wikipedia.org/wiki/Fan-out_(software)#Message-oriented_middleware
 [grace]: https://en.wikipedia.org/wiki/Graceful_exit
 [child-p]: https://en.wikipedia.org/wiki/Child_process
+[gh-flow]: https://docs.github.com/en/get-started/using-github/github-flow
+[ccom]: https://www.conventionalcommits.org/en/v1.0.0/
+[sv]: https://semver.org/
 [v8]: https://v8.dev/
 
 [benchmark]: ./test/utils/benchmrk
