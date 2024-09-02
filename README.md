@@ -229,7 +229,8 @@ node --run benchmark -- --size=4 --kibs=10
 
 ## Contributing
 
-Follows [Semver][sv], [Github Flow][gh-flow] & [Conventional Commits][ccom].   
+Follows [Semver][sv], [Github Flow][gh-flow] & [Conventional Commits][ccom].  
+Changes *must* be accompanied by 100% unit-test coverage.
 
 ## Authors
 
@@ -262,7 +263,7 @@ Follows [Semver][sv], [Github Flow][gh-flow] & [Conventional Commits][ccom].
 [child-p]: https://en.wikipedia.org/wiki/Child_process
 [gh-flow]: https://docs.github.com/en/get-started/using-github/github-flow
 [ccom]: https://www.conventionalcommits.org/en/v1.0.0/
-[semver]: https://semver.org/
+[sv]: https://semver.org/
 [v8]: https://v8.dev/
 
 [benchmark]: ./test/utils/benchmrk
