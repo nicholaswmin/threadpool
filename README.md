@@ -226,18 +226,10 @@ node --run benchmark -- --size=4 --kibs=10
 
 > 4 threads, each `ping` sending 10 kilobytes of event data
 
-logs:
 
-```text
-┌───────┬────────────┬────────────┬─────────────────────┬─────────────────────┐
-│ ticks │ pings/sec. │ pongs/sec. │ ping data (mb/sec.) │ pong data (mb/sec.) │
-├───────┼────────────┼────────────┼─────────────────────┼─────────────────────┤
-│ 5     │ 3968       │ 15871      │ 39.71               │ 158.71              │
-└───────┴────────────┴────────────┴─────────────────────┴─────────────────────┘
+## Contributing
 
- threads: 4 | payload (kb): 10 | Load avg. (1 min): 2 | Memory usage (mb): 10
-```
-
+Follows [Semver][sv], [Github Flow][gh-flow] & [Conventional Commits][ccom].   
 
 ## Authors
 
@@ -268,6 +260,9 @@ logs:
 [fanout]: https://en.wikipedia.org/wiki/Fan-out_(software)#Message-oriented_middleware
 [grace]: https://en.wikipedia.org/wiki/Graceful_exit
 [child-p]: https://en.wikipedia.org/wiki/Child_process
+[gh-flow]: https://docs.github.com/en/get-started/using-github/github-flow
+[ccom]: https://www.conventionalcommits.org/en/v1.0.0/
+[semver]: https://semver.org/
 [v8]: https://v8.dev/
 
 [benchmark]: ./test/utils/benchmrk
