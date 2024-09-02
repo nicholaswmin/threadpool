@@ -1,4 +1,4 @@
-[![dep-url][dep-badge]][dep-url] [![test-url][test-badge]][test-url] 
+[![test-url][test-badge]][test-url] [![dep-url][dep-badge]][dep-url] 
 
 # :thread: threadpool
 
