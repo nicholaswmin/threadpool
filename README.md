@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm i https://github.com/nicholaswmin/threadpool
+npm i @nicholaswmin/threadpool
 ```
 
 ## Example
