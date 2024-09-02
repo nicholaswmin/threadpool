@@ -74,8 +74,6 @@ Creates a pool.
 | `env`        | `Object` | Thread env. variables    | primary `process.env` |
 
 
-### Start/Stop
-
 #### `await pool.start()`
 
 Starts the pool.
